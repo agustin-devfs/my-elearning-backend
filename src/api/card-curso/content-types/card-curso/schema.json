@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "card_cursos",
+  "info": {
+    "singularName": "card-curso",
+    "pluralName": "card-cursos",
+    "displayName": "cardCurso",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "duracion": {
+      "type": "string"
+    },
+    "nivel": {
+      "type": "string"
+    },
+    "imagen": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "descripcion": {
+      "type": "blocks"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "mis-sesiones.sesiones"
+    },
+    "botonLink": {
+      "type": "string"
+    },
+    "botonTexto": {
+      "type": "string"
+    },
+    "highlights": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "estado": {
+      "type": "string",
+      "default": "abierta inscripcion"
+    }
+  }
+}
