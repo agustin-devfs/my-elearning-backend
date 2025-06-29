@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_mis_sesiones_sesiones",
+  "info": {
+    "displayName": "Sesiones",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "descripcion": {
+      "type": "string"
+    }
+  }
+}

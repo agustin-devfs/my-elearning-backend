@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pagos",
+  "info": {
+    "singularName": "pago",
+    "pluralName": "pagos",
+    "displayName": "Pago",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "cursos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::curso.curso",
+      "mappedBy": "pago"
+    },
+    "curso": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::curso.curso",
+      "inversedBy": "pagos"
+    },
+    "Estado_pago": {
+      "type": "enumeration",
+      "enum": [
+        "completo",
+        "pendiente"
+      ]
+    },
+    "Proveedor_pago": {
+      "type": "enumeration",
+      "enum": [
+        "Mercado Pago",
+        "Stripe"
+      ]
+    },
+    "Fecha": {
+      "type": "datetime",
+      "required": true
+    },
+    "Transaccion_ID": {
+      "type": "string",
+      "required": true
+    },
+    "usuarios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::usuario.usuario",
+      "mappedBy": "pago"
+    }
+  }
+}

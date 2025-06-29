@@ -1,0 +1,20 @@
+module.exports = {
+  routes: [
+    {
+      method: 'POST',
+      path: '/mercadopago/create-preference',
+      handler: 'mercadopago.createPreference'
+    },
+    {
+      method: 'POST',
+      path: '/mercadopago/webhook',
+      handler: 'mercadopago.webhook',
+      config: { auth: false }
+    },
+    {
+      method: 'GET',
+      path: '/mercadopago/status',
+      handler: 'mercadopago.status'
+    }
+  ]
+};

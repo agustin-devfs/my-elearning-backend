@@ -369,6 +369,284 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCardCursoCardCurso extends Struct.CollectionTypeSchema {
+  collectionName: 'card_cursos';
+  info: {
+    description: '';
+    displayName: 'cardCurso';
+    pluralName: 'card-cursos';
+    singularName: 'card-curso';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    botonLink: Schema.Attribute.String;
+    botonTexto: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.Blocks;
+    duracion: Schema.Attribute.String;
+    estado: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'abierta inscripcion'>;
+    highlights: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    imagen: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    items: Schema.Attribute.Component<'mis-sesiones.sesiones', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::card-curso.card-curso'
+    > &
+      Schema.Attribute.Private;
+    nivel: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCardQuienSoyCardQuienSoy
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'card_quien_soys';
+  info: {
+    displayName: 'cardQuienSoy';
+    pluralName: 'card-quien-soys';
+    singularName: 'card-quien-soy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::card-quien-soy.card-quien-soy'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    texto: Schema.Attribute.String;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCardSesionCardSesion extends Struct.CollectionTypeSchema {
+  collectionName: 'card_sesions';
+  info: {
+    description: '';
+    displayName: 'cardSesion';
+    pluralName: 'card-sesions';
+    singularName: 'card-sesion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    BotonLink: Schema.Attribute.String;
+    BotonTexto: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Reservar sesi\u00F3n'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    Duracion: Schema.Attribute.String & Schema.Attribute.Required;
+    icon: Schema.Attribute.String;
+    items: Schema.Attribute.Component<'mis-sesiones.sesiones', true>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::card-sesion.card-sesion'
+    >;
+    Precio: Schema.Attribute.BigInteger;
+    publishedAt: Schema.Attribute.DateTime;
+    Titulo: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCursoCurso extends Struct.CollectionTypeSchema {
+  collectionName: 'cursos';
+  info: {
+    description: '';
+    displayName: 'Curso';
+    pluralName: 'cursos';
+    singularName: 'curso';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'descripci\u00F3n'>;
+    Estado: Schema.Attribute.Enumeration<['habilitado', 'deshabilitado']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'deshabilitado'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::curso.curso'> &
+      Schema.Attribute.Private;
+    pago: Schema.Attribute.Relation<'manyToOne', 'api::pago.pago'>;
+    pagos: Schema.Attribute.Relation<'manyToMany', 'api::pago.pago'>;
+    Precio: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<33333>;
+    publishedAt: Schema.Attribute.DateTime;
+    Titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users: Schema.Attribute.Relation<
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    usuarios: Schema.Attribute.Relation<'manyToMany', 'api::usuario.usuario'>;
+    videos: Schema.Attribute.Relation<'manyToMany', 'api::video.video'>;
+  };
+}
+
+export interface ApiPagoPago extends Struct.CollectionTypeSchema {
+  collectionName: 'pagos';
+  info: {
+    description: '';
+    displayName: 'Pago';
+    pluralName: 'pagos';
+    singularName: 'pago';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    curso: Schema.Attribute.Relation<'manyToMany', 'api::curso.curso'>;
+    cursos: Schema.Attribute.Relation<'oneToMany', 'api::curso.curso'>;
+    Estado_pago: Schema.Attribute.Enumeration<['completo', 'pendiente']>;
+    Fecha: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::pago.pago'>;
+    Proveedor_pago: Schema.Attribute.Enumeration<['Mercado Pago', 'Stripe']>;
+    publishedAt: Schema.Attribute.DateTime;
+    Transaccion_ID: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    usuarios: Schema.Attribute.Relation<'oneToMany', 'api::usuario.usuario'>;
+  };
+}
+
+export interface ApiUsuarioUsuario extends Struct.CollectionTypeSchema {
+  collectionName: 'usuarios';
+  info: {
+    description: '';
+    displayName: 'Usuario';
+    pluralName: 'usuarios';
+    singularName: 'usuario';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cursos: Schema.Attribute.Relation<'manyToMany', 'api::curso.curso'>;
+    Estado_pago: Schema.Attribute.Enumeration<['pendiente', 'pago']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pendiente'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::usuario.usuario'
+    > &
+      Schema.Attribute.Private;
+    Nombre: Schema.Attribute.String;
+    pago: Schema.Attribute.Relation<'manyToOne', 'api::pago.pago'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVideoVideo extends Struct.CollectionTypeSchema {
+  collectionName: 'videos';
+  info: {
+    description: '';
+    displayName: 'Video';
+    pluralName: 'videos';
+    singularName: 'video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cursos: Schema.Attribute.Relation<'manyToMany', 'api::curso.curso'>;
+    Duracion: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'100'>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::video.video'>;
+    publishedAt: Schema.Attribute.DateTime;
+    Titulo: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'Titulo'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    URL_Video: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<'http://'>;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -833,6 +1111,7 @@ export interface PluginUsersPermissionsUser
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    cursos: Schema.Attribute.Relation<'manyToMany', 'api::curso.curso'>;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -878,6 +1157,13 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::card-curso.card-curso': ApiCardCursoCardCurso;
+      'api::card-quien-soy.card-quien-soy': ApiCardQuienSoyCardQuienSoy;
+      'api::card-sesion.card-sesion': ApiCardSesionCardSesion;
+      'api::curso.curso': ApiCursoCurso;
+      'api::pago.pago': ApiPagoPago;
+      'api::usuario.usuario': ApiUsuarioUsuario;
+      'api::video.video': ApiVideoVideo;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

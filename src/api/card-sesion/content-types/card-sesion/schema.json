@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "card_sesions",
+  "info": {
+    "singularName": "card-sesion",
+    "pluralName": "card-sesions",
+    "displayName": "cardSesion",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Titulo": {
+      "type": "string",
+      "required": true
+    },
+    "Duracion": {
+      "type": "string",
+      "required": true
+    },
+    "Precio": {
+      "type": "biginteger"
+    },
+    "descripcion": {
+      "type": "blocks",
+      "required": true
+    },
+    "BotonTexto": {
+      "type": "string",
+      "required": true,
+      "default": "Reservar sesión"
+    },
+    "BotonLink": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "mis-sesiones.sesiones"
+    },
+    "icon": {
+      "type": "string"
+    }
+  }
+}

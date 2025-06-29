@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "usuarios",
+  "info": {
+    "singularName": "usuario",
+    "pluralName": "usuarios",
+    "displayName": "Usuario",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "Estado_pago": {
+      "type": "enumeration",
+      "enum": [
+        "pendiente",
+        "pago"
+      ],
+      "required": true,
+      "default": "pendiente"
+    },
+    "cursos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::curso.curso",
+      "inversedBy": "usuarios"
+    },
+    "pago": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pago.pago",
+      "inversedBy": "usuarios"
+    }
+  }
+}

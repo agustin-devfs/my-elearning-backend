@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cursos",
+  "info": {
+    "singularName": "curso",
+    "pluralName": "cursos",
+    "displayName": "Curso",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Titulo": {
+      "type": "string"
+    },
+    "Descripcion": {
+      "type": "text",
+      "required": true,
+      "default": "descripción"
+    },
+    "Precio": {
+      "type": "integer",
+      "required": true,
+      "default": 33333
+    },
+    "Estado": {
+      "type": "enumeration",
+      "enum": [
+        "habilitado",
+        "deshabilitado"
+      ],
+      "required": true,
+      "default": "deshabilitado"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "cursos"
+    },
+    "videos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::video.video",
+      "mappedBy": "cursos"
+    },
+    "usuarios": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::usuario.usuario",
+      "mappedBy": "cursos"
+    },
+    "pago": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pago.pago",
+      "inversedBy": "cursos"
+    },
+    "pagos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::pago.pago",
+      "mappedBy": "curso"
+    }
+  }
+}
