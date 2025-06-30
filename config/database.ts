@@ -1,4 +1,14 @@
 import path from 'path';
+import { Pool } from 'pg';
+
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  ssl: true, // Recomendado para producción
+});
 
 export default ({ env }) => {
   const client = env('DATABASE_CLIENT', 'sqlite');
@@ -58,3 +68,5 @@ export default ({ env }) => {
     },
   };
 };
+
+export { pool };
